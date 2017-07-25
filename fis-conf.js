@@ -145,23 +145,24 @@ fis.media('dist')
     })
 
     //文件打包到images/*.png位置
-   /* .match('src/(**.{png,gif,jpg})', {
-        release: 'images/$1',
-    })*/
-
-    .match('/src/images/(**.{png, jpg, gif})', {
+    /*.match('/src/images/(**.{png, jpg, gif})', {
         release: 'images/$1',
     })
 
-    //图片位置
     .match('/src/css/(**.{png, jpg, gif})', {
         release: 'images/$1'
     })
 
     .match('/src/widget/(**.{png, jpg, gif})', {
         release: 'images/$1'
-    })
+    })*/
 
+    .match('**/images/(**.{png, jpg, gif})', {
+        release: 'images/$1',
+    })
+    .match('**/commons/(**.{png, jpg, gif})', {
+        release: 'images/$1',
+    })
 
     //指定文件添加时间戳
     .match('commons.js', {

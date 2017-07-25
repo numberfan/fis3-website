@@ -1,0 +1,1 @@
+!function(){console.log("我是header"),document.querySelector(".tit").onclick=function(){console.log(11)}}();

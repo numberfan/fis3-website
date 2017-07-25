@@ -45,5 +45,5 @@ fis3工程化
     ├── user.html 用户中心
 
 ## 问题集锦
-1. 使用fis3 release发布时，若设置了fis.set('project.files' ['src/**']);，则使用fis.hook()会报错
-2. 发布时，将所有图片放置images/**下
+1. ~~使用fis3 release发布时，若设置了fis.set('project.files', ['src/**']);则使用fis.hook()会报错~~ 莫名其妙地就不报错了，哈哈
+2. ~~发布时，将所有图片放置images/**下~~ 分批次，匹配项目图片
