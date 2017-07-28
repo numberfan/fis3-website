@@ -48,7 +48,7 @@ fis.hook('relative') //支持相对路径
     })
 
     //components 文件为模块化
-    .match('/src/components/**', {
+    .match('/src/widget/**', {
         isMod: true
     })
 
@@ -58,7 +58,7 @@ fis.hook('relative') //支持相对路径
     })
 
     //不发布_mixin.less等类似文件
-    .match(/^\/src\/css\/_.*\.(css|less)/i,{
+    .match(/^\/src\/css\/commons\/_.*\.(css|less)/i,{
         release : false
     })
 
@@ -135,33 +135,40 @@ fis.media('dist')
         postpackager: fis.plugin('loader'),
     })
 
+    //设置html打包位置
+    .match('/src/(*.html)', {
+        release: '$1'
+    })
+
     //文件打包到css/*.css位置
-    .match('/src/css/(**.{css, less})', {
+    .match('/src/css/commons/(**.{css, less})', {
         release: 'css/$1',
         useSprite : true,
     })
-    .match(/^\/src\/css\/_.*\.(css|less)/i,{
+    .match('/src/css/pages/(**.{css, less})', {
+        release: 'css/$1',
+        useSprite : true,
+    })
+    .match('/src/css/plugins/(**.{css, less})', {
+        release: 'css/$1',
+        useSprite : true,
+    })
+
+    .match(/^\/src\/css\/commons\/_.*\.(css|less)/i,{
         release : false
     })
 
     //文件打包到images/*.png位置
-    /*.match('/src/images/(**.{png, jpg, gif})', {
-        release: 'images/$1',
-    })
-
-    .match('/src/css/(**.{png, jpg, gif})', {
-        release: 'images/$1'
-    })
-
-    .match('/src/widget/(**.{png, jpg, gif})', {
-        release: 'images/$1'
-    })*/
-
     .match('**/images/(**.{png, jpg, gif})', {
         release: 'images/$1',
     })
-    .match('**/commons/(**.{png, jpg, gif})', {
+    .match('**/pages/(**.{png, jpg, gif})', {
         release: 'images/$1',
+    })
+
+    //设置js打包位置
+    .match('**/pages/(**.js)', {
+        release: 'js/$1'
     })
 
     //指定文件添加时间戳
