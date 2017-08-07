@@ -57,7 +57,9 @@ fis.hook('relative') //支持相对路径
 
     //编译es6
     .match('**.es6', {
-        parser: fis.plugin('translate-es6'),
+        parser: fis.plugin('translate-es6', {
+            presets: ['es2015']
+        }),
         rExt: '.js',
     })
 
