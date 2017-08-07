@@ -1,6 +1,1 @@
-console.log("3333333333333333")
-console.log("3332ddfcdd")
-console.log("233")
-console.log(344)
-console.log(566)
-console.log(766)
+console.log("我是hello.js")

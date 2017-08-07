@@ -4,9 +4,15 @@
   "description": "",
   "main": "fis-conf.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "fis3 server start",
+    "dev": "fis3 release -wL",
+    "build": "fis3 release dist",
+    "stop": "fis3 server stop"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "fis3-hook-module": "^1.2.2"
+  }
 }

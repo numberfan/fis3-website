@@ -11,7 +11,7 @@ fis.set('project.files', ['src/**', '**.html']);
 fis.set('project.ignore', ['fis-conf.js', '.*', '*.md', 'node_modules/**', '*.json', 'test/**', 'dist/**']);
 fis.set('project.charset', 'utf8');
 
-
+/*全局配置*/
 fis.hook('relative') //支持相对路径
 
     //common.js模块打包
@@ -20,8 +20,11 @@ fis.hook('relative') //支持相对路径
         extList: ['.js', '.es']
     })
 
+    .hook('module') //开启模块化
+
     //模块打包
     .match('**', {
+        relative: true,             //支持相对路径
         postpackager: [
             fis.plugin('loader', {
                 resourceType: 'commonJs',
@@ -47,14 +50,16 @@ fis.hook('relative') //支持相对路径
         parser: fis.plugin('less')
     })
 
-    //components 文件为模块化
-    .match('/src/widget/**', {
-        isMod: true
-    })
-
     //模块化
     .match('/src/modules/**', {
         isMod: true,
+    })
+
+    //编译es6
+    .match('**.es', {
+        parser: fis.plugin('babel-5.x'),
+        rExt: 'js',
+        isMod: true
     })
 
     //不发布_mixin.less等类似文件
@@ -90,26 +95,6 @@ fis.hook('relative') //支持相对路径
         rExt: '.css'
     });
 
-//配置测试包
-fis.media('test')
-    .match('**', {
-        relative: true
-    })
-
-    //指定雪碧图的位置
-    .match('/src/css/(**.png)', {
-        release: 'src/images/$1'
-    })
-    .match('**', {
-        deploy: [
-            //过滤掉已被打包的文件
-            fis.plugin('skip-packed'),
-            fis.plugin('local-deliver', {
-                to: TSET_OUTPUT_PATH
-            })
-        ]
-    });
-
 fis.set('new date', Date.now());
 
 //配置正式包
@@ -117,16 +102,18 @@ fis.media('dist')
     .match('::package', {
         //打包插件(文件按指定顺序打包)
         packager: fis.plugin('map', {
-            '/js/vendor.js': [
-                '/src/scripts/commons/mod.js',
+            'js/vendor.js': [
+                'src/scripts/commons/mod.js',
+                'src/scripts/commons/zepto.js',
+                'src/scripts/commons/jsrender.min.js'
             ],
-            '/js/plugins.js': [
+            'js/plugins.js': [
 
             ],
-            '/css/vendor.css': [
+            'css/vendor.css': [
 
             ],
-            '/css/plugin.css': [
+            'css/plugin.css': [
 
             ]
         }),
@@ -144,14 +131,17 @@ fis.media('dist')
     .match('/src/css/commons/(**.{css, less})', {
         release: 'css/$1',
         useSprite : true,
+        margin: 10
     })
     .match('/src/css/pages/(**.{css, less})', {
         release: 'css/$1',
         useSprite : true,
+        margin: 10
     })
     .match('/src/css/plugins/(**.{css, less})', {
         release: 'css/$1',
         useSprite : true,
+        margin: 10
     })
 
     .match(/^\/src\/css\/commons\/_.*\.(css|less)/i,{
@@ -177,9 +167,9 @@ fis.media('dist')
     })
 
     //设置静态资源路径
-    .match('**.{js, css, less, png, jpg, gif}', {
+    /*.match('**.{js, css, less, png, jpg, gif}', {
         domain: STATIC_PATH
-    })
+    })*/
 
     .match('**', {
         deploy: [
