@@ -28,3 +28,29 @@ console.log(arr.data)
 var _htmlOutput = window.jsrender.templates($('#newsList').html()).render(arr);
 $(".list-con").html(_htmlOutput);
 
+let a = 23;
+const b = 24;
+let arr01 = [22, 33, 55, 666];
+console.log(a, b);
+console.log(...arr01)
+
+
+function f(x = 1, y) {
+  return [x, y];
+}
+
+f() // [1, undefined]
+f(2) // [2, undefined])
+f(undefined, 1) // [1, 1]
+
+function add(...values) {
+  let sum = 0;
+
+  for (var val of values) {
+    sum += val;
+  }
+
+  return sum;
+}
+
+add(2, 5, 3) // 

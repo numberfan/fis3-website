@@ -55,6 +55,7 @@ fis3工程化
         Math对象名必须与util.js内的一致
         __inline('util.js');
         console.log(Math);
+        
     2. 模块引入module.export = {}; require(); 新引入的均为一个新的请求
         可自定义方法名，但util.js文件要module.export={]导出
         var mathCommonjs = require('../../modules/util');
