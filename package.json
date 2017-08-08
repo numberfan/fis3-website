@@ -13,6 +13,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "fis3-hook-module": "^1.2.2"
+    "fis3-deploy-skip-packed": "^0.0.5",
+    "fis3-hook-module": "^1.2.2",
+    "fis3-parser-translate-es6": "^1.0.1",
+    "fis3-parser-translate-es6-bg": "^1.0.2"
   }
 }

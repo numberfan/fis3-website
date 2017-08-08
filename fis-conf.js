@@ -56,10 +56,11 @@ fis.hook('relative') //支持相对路径
     })
 
     //编译es6
-    .match('**.es', {
-        parser: fis.plugin('babel-5.x'),
-        rExt: 'js',
-        isMod: true
+    .match('**.es6', {
+        parser: fis.plugin('translate-es6', {
+            presets: ['es2015']
+        }),
+        rExt: '.js',
     })
 
     //不发布_mixin.less等类似文件
