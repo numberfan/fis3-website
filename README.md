@@ -45,9 +45,9 @@ fis3工程化
     │           ├── widget01.js widget01的css
     │           ├── widget01.css widget01的js
     │           ├── widget01.html widget01的html
+    │   ├── index.html
+    │   ├── test.html
     ├── fis-conf.js 配置文件
-    ├── index.html 首页
-    ├── user.html 用户中心
 
 ## 相关
 1. 样式文件：less
@@ -76,3 +76,4 @@ fis3工程化
 6. ~~html页面挪动到src文件下~~ 已处理
 7. ~~fis3有没有动态配置内容的插件？~~ 新增jsrender
 8. ~~支持es6~~
+9. 模板引擎还在考虑
