@@ -1,14 +1,14 @@
 //M端项目配置
-//测试包 执行 fis3 release test
-var TSET_OUTPUT_PATH = './test';    //测试包路径（静态资源为相对路径）
+//测试包 执行 fis3 release mock
+var TSET_OUTPUT_PATH = './mock';    //测试包路径（静态资源为相对路径）
 
 //正式包 执行 fis3 release dist
 var FORMAL_OUTPUT_PATH = './dist';  //正式包路径（静态资源为线上路径）
 var STATIC_PATH = 'http://cq.qq.com';   //静态资源站点
 
 //常规设置
-fis.set('project.files', ['src/**', '**.html']);
-fis.set('project.ignore', ['fis-conf.js', '.*', '*.md', 'node_modules/**', '*.json', 'test/**', 'dist/**']);
+fis.set('project.files', ['src/**', '**.html', 'mock/**']);
+fis.set('project.ignore', ['fis-conf.js', '.*', '*.md', 'node_modules/**', '*.json', 'dist/**']);
 fis.set('project.charset', 'utf8');
 
 /*全局配置*/
@@ -64,8 +64,9 @@ fis.hook('relative') //支持相对路径
     })
 
     //不发布_mixin.less等类似文件
-    .match(/^\/src\/css\/commons\/_.*\.(css|less)/i,{
-        release : false
+    .match('**/_*.**', {
+        release: false,
+        useOptimizer: false
     })
 
     //js压缩
@@ -81,20 +82,20 @@ fis.hook('relative') //支持相对路径
         optimizer: fis.plugin('png-compressor')
     })
 
-    //css less压缩
+    //css less压缩/雪碧图/前缀
     .match('*.{css,less}',{
         useSprite : true,
-        optimizer: fis.plugin('clean-css')
+        optimizer: fis.plugin('clean-css'),
+        preprocessor: fis.plugin('autoprefixer', {
+            "browsers": ["Android >= 2.1", "iOS >= 4", "ie >= 8", "firefox >= 15"],
+            "cascade": true
+        })
     })
 
     .match('**html:css',{
         optimizer: fis.plugin('clean-css')
-    })
-
-    //widget
-    .match('/src/widget/(**.{css, less})', {
-        rExt: '.css'
     });
+
 
 fis.set('new date', Date.now());
 
@@ -129,37 +130,32 @@ fis.media('dist')
     })
 
     //文件打包到css/*.css位置
-    .match('/src/css/commons/(**.{css, less})', {
-        release: 'css/$1',
-        useSprite : true,
-        margin: 10
-    })
-    .match('/src/css/pages/(**.{css, less})', {
-        release: 'css/$1',
-        useSprite : true,
-        margin: 10
-    })
-    .match('/src/css/plugins/(**.{css, less})', {
-        release: 'css/$1',
-        useSprite : true,
-        margin: 10
-    })
-
-    .match(/^\/src\/css\/commons\/_.*\.(css|less)/i,{
-        release : false
+    .match('src/css/**/(**.{css, less})', {
+        release: 'css/$1'
     })
 
     //文件打包到images/*.png位置
-    .match('**/images/(**.{png, jpg, gif})', {
+    .match('**/pages/(**.{png, jpg, gif})', {
         release: 'images/$1',
     })
-    .match('**/pages/(**.{png, jpg, gif})', {
+    .match('src/widget/**/(**.{png, jpg, gif})', {
         release: 'images/$1',
     })
 
     //设置js打包位置
-    .match('**/pages/(**.js)', {
+    .match('**/pages/(**.{js, es6})', {
         release: 'js/$1'
+    })
+    .match('**/modules/(**.{js, es6})', {
+      release: 'js/$1'
+    })
+
+    // 不发布
+    .match(/^\/src\/css\/commons\/_.*\.(css|less)/i,{
+      release : false
+    })
+    .match('mock/**',{
+      release : false
     })
 
     //指定文件添加时间戳
