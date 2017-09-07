@@ -22,6 +22,17 @@ fis.hook('relative') //支持相对路径
 
     .hook('module') //开启模块化
 
+    // template 模板
+    .match('**.tmpl', {
+      parser: fis.plugin('template', {
+        sTag: '<#',
+        eTag: '#>',
+        global: 'template'
+      }),
+      isJsLike: true,
+      release : false
+    })
+
     //模块打包
     .match('**', {
         relative: true,             //支持相对路径

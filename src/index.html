@@ -3,28 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="css/commons/reset.less">
     <link rel="stylesheet" href="css/pages/index.less">
     <script src="scripts/commons/mod.js"></script>
     <script src="scripts/commons/zepto.js"></script>
     <script src="scripts/commons/jsrender.min.js"></script>
 </head>
 <body>
-    <link rel="import" href="widget/header/index.html?__inline">
+    <link rel="import" href="widget/header">
     <h1>Hello 张三 233</h1>
     <div class="con01"></div>
-    <ul class="con02">
-        <script id="indexList" type="text/x-jsrender">
-          <li>{{ item }}</li>
-        </script>
-    </ul>
+    <div class="con02"></div>
     <ul class="list-con"></ul>
     <link rel="import" href="widget/footer/index.html?__inline">
+    <link rel="import" href="scripts/templates/index_list.html?__inline">
 
     <script src="scripts/pages/index.es6"></script>
-    <script>
-        /*var jsviews = window.jsviews || window.jQuery;
-        console.log(jsviews.templates('#indexList'))*/
-    </script>
 </body>
 </html>
