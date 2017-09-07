@@ -10,13 +10,11 @@
     "stop": "fis3 server stop"
   },
   "keywords": [],
-  "author": "",
+  "author": "shiryChen",
   "license": "ISC",
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",
-    "fis3-deploy-skip-packed": "^0.0.5",
-    "fis3-hook-module": "^1.2.2",
-    "fis3-parser-translate-es6": "^1.0.1",
-    "fis3-parser-translate-es6-bg": "^1.0.2"
+    "fis-parser-babel-6.x": "^6.24.1",
+    "fis3-deploy-skip-packed": "^0.0.5"
   }
 }

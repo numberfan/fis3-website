@@ -1,4 +1,4 @@
-import {getLogin} from '../../modules/util.es6'
+import {getLogin} from '../../modules/util.es'
 let arr = [22, 33, 44, 55, 66]
 var user = {
   datas: [
@@ -21,9 +21,10 @@ console.log(user)
 for (var i = 0, len = user.length; i < len; i++) {
   console.log(user[i])
 }
+let aaa = 2222
 
 var jsrender = window.jsrender
 var tmpl = jsrender.templates($('#myTmpl').html());
 var html = tmpl.render(user);
-console.log(html)
+console.log(jsrender, html)
 

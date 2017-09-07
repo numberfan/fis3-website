@@ -10,6 +10,7 @@ var STATIC_PATH = 'http://cq.qq.com';   //静态资源站点
 fis.set('project.files', ['src/**', '**.html', 'mock/**']);
 fis.set('project.ignore', ['fis-conf.js', '.*', '*.md', 'node_modules/**', '*.json', 'dist/**']);
 fis.set('project.charset', 'utf8');
+fis.set('project.fileType.text', 'es');
 
 /*全局配置*/
 fis.hook('relative') //支持相对路径
@@ -18,19 +19,6 @@ fis.hook('relative') //支持相对路径
     .hook('commonjs', {
         baseUrl: './src/',
         extList: ['.js', '.es']
-    })
-
-    .hook('module') //开启模块化
-
-    // template 模板
-    .match('**.tmpl', {
-      parser: fis.plugin('template', {
-        sTag: '<#',
-        eTag: '#>',
-        global: 'template'
-      }),
-      isJsLike: true,
-      release : false
     })
 
     //模块打包
@@ -67,8 +55,8 @@ fis.hook('relative') //支持相对路径
     })
 
     //编译es6
-    .match('**.es6', {
-        parser: fis.plugin('translate-es6', {
+    .match('**.es', {
+        parser: fis.plugin('babel-6.x', {
             presets: ['es2015']
         }),
         rExt: '.js',
